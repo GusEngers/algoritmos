@@ -1,11 +1,23 @@
+/**
+ * Clase constructora de información del nodo de una `Queue`
+ */
 class QueueNode {
+  /**
+   * @param value Valor para almacenar en el nodo
+   */
   constructor(value) {
     this.value = value;
     this.next = null;
   }
 }
 
+/**
+ * Clase constructora de una `Queue`
+ */
 class Queue {
+  /**
+   * @param {Number} maxSize Tamaño máximo que tendrá la `Queue`
+   */
   constructor(maxSize) {
     this.items = null;
     this.length = 0;
@@ -13,12 +25,17 @@ class Queue {
     this.tail = null;
 
     if (typeof maxSize !== 'number' || maxSize < 1) {
-      throw new SyntaxError('A maximum queue size must be set that is greater than or equal to 1');
+      throw new RangeError('A maximum queue size must be set that is greater than or equal to 1');
     } else {
-      this.maxSize = maxSize;
+      this.MAX_SIZE = maxSize;
     }
   }
 
+  /**
+   * Añade un nodo al final de la `Queue`
+   * @param {QueueNode.value} value Valor que tendrá el nodo
+   * @returns {Number} `1` si se añade un nodo, `0` si no se añade
+   */
   enqueue(value) {
     if (this.isFull()) return 0;
 
@@ -37,6 +54,11 @@ class Queue {
     return 1;
   }
 
+  /**
+   * Añade múltiples nodos al final de la `Queue`
+   * @param {QueueNode.value[]} values Lista de valores a añadir
+   * @returns {Number} Cantidad de nodos añadidos
+   */
   enqueueMany(values) {
     if (!Array.isArray(values)) {
       throw new SyntaxError('enqueueMany only accepts an Array of values');
@@ -50,6 +72,10 @@ class Queue {
     return count;
   }
 
+  /**
+   * Elimina el primer nodo de la `Queue`
+   * @returns {QueueNode.value|null} Valor del nodo eliminado
+   */
   dequeue() {
     if (this.isEmpty()) return this.items;
     if (this.length === 1) {
@@ -70,14 +96,26 @@ class Queue {
     return current.value;
   }
 
+  /**
+   * Verifica si la `Queue` está vacía
+   * @returns {Boolean}
+   */
   isEmpty() {
     return !this.length;
   }
 
+  /**
+   * Verifica si la `Queue` alcanzó su tamaño máximo
+   * @returns {Boolean}
+   */
   isFull() {
-    return this.maxSize === this.length;
+    return this.MAX_SIZE === this.length;
   }
 
+  /**
+   * Retorna todos los valores de la `Queue` encadenados
+   * @returns {String|null}
+   */
   peek() {
     if (this.isEmpty()) return null;
 
@@ -89,56 +127,28 @@ class Queue {
     }
     return str;
   }
+
+  /**
+   * Retorna el tamaño actual de la `Queue`
+   * @returns {Number}
+   */
+  size() {
+    return this.length;
+  }
+
+  /**
+   * Retorna la primera posición actual de la `Queue`
+   * @returns {QueueNode.value|null}
+   */
+  front() {
+    return this.head;
+  }
+
+  /**
+   * Retorna la última posición actual de la `Queue`
+   * @returns {QueueNode.value|null}
+   */
+  back() {
+    return this.tail;
+  }
 }
-
-const queue = new Queue();
-console.log(
-  queue.enqueueMany(['hik', 'asdasd', 123, 67, 'Hola', 7684, 'assafa', 'adhasd', 'aaa', 10])
-);
-console.log('\nRonda uno');
-console.log('Head:', queue.head);
-console.log('Tail:', queue.tail);
-console.log('Length:', queue.length);
-console.log(queue.peek());
-
-console.log('\nRonda dos');
-console.log('Borrado:', queue.dequeue());
-console.log('Head:', queue.head);
-console.log('Tail:', queue.tail);
-console.log('Length:', queue.length);
-console.log(queue.peek());
-
-console.log('\nRonda tres');
-console.log('Borrado:', queue.dequeue());
-console.log('Head:', queue.head);
-console.log('Tail:', queue.tail);
-console.log('Length:', queue.length);
-console.log(queue.peek());
-
-console.log('\nRonda cuatro');
-console.log('Borrado:', queue.dequeue());
-console.log('Head:', queue.head);
-console.log('Tail:', queue.tail);
-console.log('Length:', queue.length);
-console.log(queue.peek());
-
-console.log('\nRonda cinco');
-console.log('Borrado:', queue.dequeue());
-console.log('Head:', queue.head);
-console.log('Tail:', queue.tail);
-console.log('Length:', queue.length);
-console.log(queue.peek());
-
-console.log('\nRonda seis');
-console.log('Borrado:', queue.dequeue());
-console.log('Head:', queue.head);
-console.log('Tail:', queue.tail);
-console.log('Length:', queue.length);
-console.log(queue.peek());
-
-console.log('\nRonda siete');
-console.log('Borrado:', queue.dequeue());
-console.log('Head:', queue.head);
-console.log('Tail:', queue.tail);
-console.log('Length:', queue.length);
-console.log(queue.peek());
