@@ -16,14 +16,14 @@ class StackNode {
  */
 class Stack {
   /**
-   * @param {Number} maxSize Tamaño máximo que tendrá la `Stack`
+   * @param {Number|undefined} maxSize Tamaño máximo que tendrá la `Stack`
    */
-  constructor(maxSize) {
+  constructor(maxSize = undefined) {
     this.items = null;
     this.length = 0;
     this.top = null;
 
-    if (typeof maxSize !== 'number' || maxSize < 1) {
+    if ((maxSize && typeof maxSize !== 'number') || maxSize < 1) {
       throw new RangeError('A maximum stack size must be set that is greater than or equal to 1');
     } else {
       this.MAX_SIZE = maxSize;
@@ -100,6 +100,7 @@ class Stack {
    * @returns {Boolean}
    */
   isFull() {
+    if (!this.MAX_SIZE) return false;
     return this.MAX_SIZE === this.length;
   }
 

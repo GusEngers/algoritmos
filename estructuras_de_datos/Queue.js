@@ -16,15 +16,15 @@ class QueueNode {
  */
 class Queue {
   /**
-   * @param {Number} maxSize Tamaño máximo que tendrá la `Queue`
+   * @param {Number|undefined} maxSize Tamaño máximo que tendrá la `Queue`
    */
-  constructor(maxSize) {
+  constructor(maxSize = undefined) {
     this.items = null;
     this.length = 0;
     this.head = null;
     this.tail = null;
 
-    if (typeof maxSize !== 'number' || maxSize < 1) {
+    if ((maxSize && typeof maxSize !== 'number') || maxSize < 1) {
       throw new RangeError('A maximum queue size must be set that is greater than or equal to 1');
     } else {
       this.MAX_SIZE = maxSize;
@@ -109,6 +109,7 @@ class Queue {
    * @returns {Boolean}
    */
   isFull() {
+    if (!this.MAX_SIZE) return false;
     return this.MAX_SIZE === this.length;
   }
 
