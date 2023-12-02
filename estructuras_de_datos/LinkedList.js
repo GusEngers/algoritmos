@@ -1,11 +1,23 @@
+/**
+ * Clase constructora de información del nodo de una `LinkedList`
+ */
 class LLNode {
+  /**
+   * @param value Valor para almacenar en el nodo
+   */
   constructor(value) {
     this.value = value;
     this.next = null;
   }
 }
 
+/**
+ * Clase constructor de una `LinkedList`
+ */
 class LinkedList {
+  /**
+   * @param {number|undefined} maxSize Tamaño máximo que tendrá la `LinkedList`
+   */
   constructor(maxSize = undefined) {
     this.items = null;
     this.length = 0;
@@ -13,12 +25,19 @@ class LinkedList {
     this.tail = null;
 
     if ((maxSize && typeof maxSize !== 'number') || maxSize < 1) {
-      throw new RangeError('A maximum queue size must be set that is greater than or equal to 1');
+      throw new RangeError(
+        'A maximum linked list size must be set that is greater than or equal to 1'
+      );
     } else {
       this.MAX_SIZE = maxSize;
     }
   }
 
+  /**
+   * Añade un nodo al inicio de la `LinkedList`
+   * @param {LLNode.value} value Valor del nodo
+   * @returns {1|0} `1` si se añade el nodo, `0` si no se añade el nodo
+   */
   addFirst(value) {
     if (this.isFull()) return 0;
 
@@ -36,6 +55,11 @@ class LinkedList {
     return 1;
   }
 
+  /**
+   * Añade un nodo al final de la `LinkedList`
+   * @param {LLNode.value} value Valor del nodo
+   * @returns {1|0} `1` si se añade el nodo, `0` si no se añade el nodo
+   */
   addLast(value) {
     if (this.isFull()) return 0;
 
@@ -58,6 +82,12 @@ class LinkedList {
     return 1;
   }
 
+  /**
+   * Añade un nodo en una posición específica de la `LinkedList`
+   * @param {LLNode.value} value Valor del nodo
+   * @param {Number} index Posición en la `LinkedList`
+   * @returns {1|0} `1` si se añade el nodo, `0` si no se añade el nodo
+   */
   add(value, index = 0) {
     if (this.isFull()) return 0;
     if (typeof index !== 'number' || index > this.length || index < 0) {
@@ -82,6 +112,28 @@ class LinkedList {
     return 1;
   }
 
+  /**
+   * Añade nodos masivamente en el inicio de la `LinkedList`
+   * @param {LLNode.value[]} values Valores de los nodos
+   * @returns {Number} Cantidad de nodos añadidos
+   */
+  addMany(values) {
+    if (!Array.isArray(values)) {
+      throw new SyntaxError('addMany only accepts an Array of values');
+    }
+    let count = 0;
+    for (let value of values) {
+      let temp = this.addFirst(value);
+      if (temp === 0) return count;
+      count += temp;
+    }
+    return count;
+  }
+
+  /**
+   * Elimina el primer nodo de la `LinkedList`
+   * @returns {LLNode.value|null} Valor del nodo eliminado
+   */
   removeFirst() {
     if (this.isEmpty()) return this.items;
 
@@ -96,6 +148,10 @@ class LinkedList {
     return temp.value;
   }
 
+  /**
+   * Elimina el último nodo de la `LinkedList`
+   * @returns {LLNode.value|null} Valor del nodo eliminado
+   */
   removeLast() {
     if (this.isEmpty()) return this.items;
 
@@ -117,6 +173,11 @@ class LinkedList {
     }
   }
 
+  /**
+   * Elimina un nodo alojado en la posición indicada
+   * @param {Number} index Posición del nodo en la `LinkedList`
+   * @returns {LLNode.value|null} Valor del nodo eliminado
+   */
   remove(index = 0) {
     if (this.isEmpty()) return this.items;
     if (typeof index !== 'number' || index > this.length - 1 || index < 0) {
@@ -138,16 +199,29 @@ class LinkedList {
     return current.value;
   }
 
+  /**
+   * Obtiene el valor del primer nodo de la `LinkedList`
+   * @returns {LLNode.value|null} Valor del nodo
+   */
   getFirst() {
     if (this.isEmpty()) return this.items;
     return this.head;
   }
 
+  /**
+   * Obtiene el valor del último nodo de la `LinkedList`
+   * @returns {LLNode.value|null} Valor del nodo
+   */
   getLast() {
     if (this.isEmpty()) return this.items;
     return this.tail;
   }
 
+  /**
+   * Obtiene el valor del nodo alojado en la posición indicada
+   * @param {Number} index Posición del nodo en la `LinkedList`
+   * @returns {LLNode.value|null} Valor del nodo
+   */
   get(index = 0) {
     if (this.isEmpty()) return this.items;
     if (typeof index !== 'number' || index > this.length - 1 || index < 0) {
@@ -167,32 +241,44 @@ class LinkedList {
     return current.value;
   }
 
+  /**
+   * Verifica si la `LinkedList` está vacía
+   * @returns {Boolean}
+   */
   isEmpty() {
     return !this.length;
   }
 
+  /**
+   * Verifica si la `LinkedList` está completa
+   * @returns {Boolean}
+   */
   isFull() {
     if (!this.MAX_SIZE) return false;
     return this.length === this.MAX_SIZE;
   }
 
+  /**
+   * Retorna el tamaño actual de la `LinkedList`
+   * @returns {Number}
+   */
   size() {
     return this.length;
   }
+
+  /**
+   * Retorna todos lo valores de la `LinkedList` encadenados
+   * @returns {String|null}
+   */
+  peek() {
+    if (this.isEmpty()) return null;
+
+    let str = '|';
+    let current = this.items;
+    while (current !== null) {
+      str += ` ${current.value} |`;
+      current = current.next;
+    }
+    return str;
+  }
 }
-
-// const linked = new LinkedList();
-// linked.addFirst(1);
-// // console.log(linked);
-// linked.addFirst(2);
-// // console.log(linked);
-// linked.addFirst(3);
-// // console.log(linked);
-// console.log(linked.head, linked.tail, '\n');
-
-// console.log(linked);
-// linked.remove(2);
-// linked.remove(1);
-// linked.remove();
-// linked.remove();
-// console.log(linked);

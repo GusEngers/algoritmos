@@ -33,7 +33,7 @@ class Stack {
   /**
    * Añade un nodo en la cima del `Stack`
    * @param {StackNode.value} value Valor que tendrá el nodo
-   * @returns {Number} `1` si se añade un nodo, `0` si no se añade
+   * @returns {1|0} `1` si se añade un nodo, `0` si no se añade
    */
   push(value) {
     if (this.isFull()) return 0;

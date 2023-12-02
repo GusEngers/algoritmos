@@ -37,3 +37,15 @@ Además podemos añadir métodos auxiliares como:
 - `peek`: Nos muestra los valores del _Stack_.
 
 _Otros métodos que podemos añadir son `size` (para ver el tamaño actual del Stack) y `head` (para obtener el valor de la posición superior del Stack)._
+
+## LINKED LIST
+
+Una _Linked List_ es una estructura de datos lineal que consiste en una secuencia de nodos. Cada nodo contiene dos campos:
+
+- `value` que es el campo donde se guardará la información del nodo.
+- `next` que es el campo que apunta al siguiente nodo de la _Linked List_.
+
+En una _Simple Linked List_, cada nodo tiene un enlace que apunta al siguiente nodo de la lista, y el último nodo apunta a `null` (indicando el final de la lista).
+
+Aunque las _Linked List_ ofrecen ventajas como inserción y eliminación eficiente de nodos en cualquier lugar de la lista, también tienen desventajas como el acceso más lento a los elementos individuales en comparación de los _Arrays_.
+
