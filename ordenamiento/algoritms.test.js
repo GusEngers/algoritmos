@@ -23,7 +23,7 @@ describe('selectionSort', function () {
     assert.strictEqual(
       Array.prototype.hasOwnProperty('selectionSort'),
       true,
-      "Array no tiene un prototype llamado 'selectionSort'"
+      "Array no tiene un método prototype llamado 'selectionSort'"
     );
   });
 
@@ -51,7 +51,7 @@ describe('selectionSort', function () {
     }
   });
 
-  it("El método debe tener el como mensaje de error 'The item at position <index> must be numeric'", function () {
+  it("El método debe tener como mensaje de error 'The item at position <index> must be numeric'", function () {
     try {
       arr2.selectionSort();
     } catch (error) {
@@ -61,7 +61,7 @@ describe('selectionSort', function () {
 });
 
 describe('bubbleSort', function () {
-  it('El método debe ser un prototype de Array', function () {
+  it('El método debe ser un método prototype de Array', function () {
     assert.strictEqual(
       Array.prototype.hasOwnProperty('bubbleSort'),
       true,
@@ -93,7 +93,7 @@ describe('bubbleSort', function () {
     }
   });
 
-  it("El método debe tener el como mensaje de error 'The item at position <index> must be numeric'", function () {
+  it("El método debe tener como mensaje de error 'The item at position <index> must be numeric'", function () {
     try {
       arr2.bubbleSort();
     } catch (error) {
@@ -103,7 +103,7 @@ describe('bubbleSort', function () {
 });
 
 describe('mergeSort', function () {
-  it('El método debe ser un prototype de Array', function () {
+  it('El método debe ser un método prototype de Array', function () {
     assert.strictEqual(
       Array.prototype.hasOwnProperty('mergeSort'),
       true,
@@ -135,7 +135,7 @@ describe('mergeSort', function () {
     }
   });
 
-  it("El método debe tener el como mensaje de error 'The array has items that are not numeric'", function () {
+  it("El método debe tener como mensaje de error 'The array has items that are not numeric'", function () {
     try {
       arr2.mergeSort();
     } catch (error) {
@@ -145,7 +145,7 @@ describe('mergeSort', function () {
 });
 
 describe('quickSort', function () {
-  it('El método debe ser un prototype de Array', function () {
+  it('El método debe ser un método prototype de Array', function () {
     assert.strictEqual(
       Array.prototype.hasOwnProperty('quickSort'),
       true,
@@ -177,7 +177,7 @@ describe('quickSort', function () {
     }
   });
 
-  it("El método debe tener el como mensaje de error 'The array has items that are not numeric'", function () {
+  it("El método debe tener como mensaje de error 'The array has items that are not numeric'", function () {
     try {
       arr2.quickSort();
     } catch (error) {
