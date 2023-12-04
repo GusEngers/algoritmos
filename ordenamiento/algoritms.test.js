@@ -23,7 +23,7 @@ describe('selectionSort', function () {
     );
   });
 
-  it('El método debe ordenar número negativos', () => {
+  it('El método debe ordenar números negativos', () => {
     assert.deepStrictEqual(
       arr3.selectionSort(),
       arr3.sort((a, b) => a - b),
@@ -57,7 +57,7 @@ describe('bubbleSort', function () {
     );
   });
 
-  it('El método debe ordenar número negativos', () => {
+  it('El método debe ordenar números negativos', () => {
     assert.deepStrictEqual(
       arr3.bubbleSort(),
       arr3.sort((a, b) => a - b),
