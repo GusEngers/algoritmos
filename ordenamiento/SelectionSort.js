@@ -1,6 +1,6 @@
 /**
  * @this Array
- * @description Ordena y retorna una copia de un `Array` de números
+ * @description Ordena y retorna una copia de un `Array` de números usando el algoritmo `Selection Sort` 
  * @returns {Number[]} Nuevo `Array` ordenado
  */
 function selectionSort() {
